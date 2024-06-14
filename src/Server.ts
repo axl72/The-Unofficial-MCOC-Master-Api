@@ -1,6 +1,5 @@
 import express, { Application, Request, Response, Router } from 'express'
 import { AppRoutes } from './AppRoutes';
-import { envs } from './services/envs.service';
 
 export interface ServerOptions  {
     PORT: any
