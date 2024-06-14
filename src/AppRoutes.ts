@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { ChampionsRoutes } from "./Routes/ChampionsRoutes";
+import 'dotenv/config'
 
 export class AppRoutes {
     static get routes(): Router {
