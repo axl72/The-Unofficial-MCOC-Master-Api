@@ -1,9 +1,10 @@
 import { Server } from "./Server";
 import { ServerOptions } from "./Server";
+import { envs } from "./services/envs.service";
 
-const options:ServerOptions = {
-
+const opts:ServerOptions = {
+    PORT: envs.PORT
 }
 
-const server = new Server(options);
+const server = new Server(opts);
 server.start();
