@@ -12,3 +12,61 @@ datasource db {
   provider = "sqlserver"
   url      = env("DATABASE_URL")
 }
+
+
+
+// model Champion {
+//   id                Int              @id @default(autoincrement())
+//   name              String
+//   biography         String
+//   releaseDate       DateTime
+//   skills            Json
+//   attributes        Json
+//   immunities        Json
+//   resistances       Json
+//   tags              Json
+//   signatureAbility  Json
+//   specialAttacks    Json
+//   synergies         Json
+//   sprites           Sprites[]
+// }
+
+model Champion {
+  id Int @id @default(autoincrement())
+  name String @unique
+  biography String
+  release_date DateTime
+  // synergies Synergy[]
+  sprites Sprite[]
+}
+
+model Sprite {
+  id Int @id @default(autoincrement())
+  source String
+  url String
+  championId Int
+  champion Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
+}
+
+// model ChampionSynergy {
+//   id Int @id @default(autoincrement())
+// }
+
+// model Synergy {
+//   id Int @id @default(autoincrement())
+//   name String
+//   championId Int @unique // id del campeón al que pertece la sinergía
+//   champions Champion[] // lista de campeones
+//   bonuses  ChampionBonus[]
+
+//   // activating_champions ChampionSynergy 
+// }
+
+// model ChampionBonus {
+//   id Int @id @default(autoincrement())
+//   description String
+//   synergy Synergy @relation(fields: [synergyId], references: [id])
+//   synergyId Int
+//   championId Int
+// }
+
