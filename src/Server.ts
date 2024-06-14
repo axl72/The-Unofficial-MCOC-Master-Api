@@ -17,6 +17,8 @@ export class Server {
 
 
     public start():void {
+        this.app.use(express.json())
+        this.app.use(express.urlencoded({ extended: true }));
         this.app.use(this.routes);
         this.app.listen(this.opts.PORT, () => {
             console.log(`Listening in port ${this.opts.PORT}`)
