@@ -1,3 +1,9 @@
-import express from 'express'
+import { Server } from "./Server";
+import { ServerOptions } from "./Server";
 
-const app = express()
+const options:ServerOptions = {
+
+}
+
+const server = new Server(options);
+server.start();
