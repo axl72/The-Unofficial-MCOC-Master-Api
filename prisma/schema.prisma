@@ -48,6 +48,13 @@ model Sprite {
   champion Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
 }
 
+model User {
+  id Int @id @default(autoincrement())
+  email String
+  password String
+  validated Boolean @default(false)
+}
+
 // model ChampionSynergy {
 //   id Int @id @default(autoincrement())
 // }
