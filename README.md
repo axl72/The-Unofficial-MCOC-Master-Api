@@ -14,5 +14,6 @@ This is the Unofficial Restful API for Marvel Consten of Champions made up to cr
 <h2 style="text-align: left;">💝 Support</h2>
 <p style="text-align: left;">
 If you like this MCOC API and would like to support & appreciate it via donation then I'll gladly accept it.
+[![paypal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/axlbernabel)
 </p>
 </div>
