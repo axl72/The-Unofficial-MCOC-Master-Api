@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { ChampionsController } from "../controllers/champions.controller";
+import { ChampionsController } from "../controllers/Champions.controller";
 
-export class Champions {
+export class ChampionsRoutes {
     public static get routes(): Router {
         const router = Router();
         

@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { RegisterController } from "../controllers/Register"
+import { RegisterController } from "../controllers"
 
-export class Register {
+export class RegisterRoutes {
     public static get routes():Router {
         const router = Router();
         const controller = new RegisterController();
