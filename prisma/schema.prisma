@@ -17,7 +17,7 @@ model Champion {
   id               Int               @id @default(autoincrement())
   name             String            @unique
   biography        String
-  release_date     DateTime
+  releaseDate      DateTime
   skills           Skill[]
   attributes       Attribute?
   inmunities       Inmunity[]
@@ -25,7 +25,7 @@ model Champion {
   tags             Tag[]
   signatureAbility SignatureAbility?
   specialAttacks   SpecialAttack[]
-  synergies        Synergy[]
+  // synergies        Synergy[]
   sprites          Sprite[]
 }
 
@@ -37,11 +37,11 @@ model Sprite {
   champion   Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
 }
 
-model Synergy {
-  id        Int        @id @default(autoincrement())
-  name      String     @unique
-  champions Champion[]
-}
+// model Synergy {
+//   id        Int        @id @default(autoincrement())
+//   name      String     @unique
+//   champions Champion[]
+// }
 
 model SpecialAttack {
   id          Int      @id @default(autoincrement())
