@@ -23,13 +23,23 @@ export class ChampionsController {
     } 
 
     public createChampion = async(req:Request, res:Response) => {
-        const {name, biography, release_date, sprites} = req.body
+        const {name, biography, releaseDate, skills, attributes, inmunities, resistences, tags, signatureAbility, specialAttacks, synergies, sprites} = req.body
+        console.log(resistences)
         try{
             await prisma.champion.create({data: {
                 name: name,
                 biography: biography,
-                release_date: new Date(release_date),
-                sprites: sprites
+                releaseDate: new Date(releaseDate),
+                skills,
+                attributes,
+                inmunities,
+                resistences,
+                tags,
+                signatureAbility,
+                specialAttacks,
+                sprites: sprites,
+
+
             }});
             res.json({message: "Champion created successful"})
 
