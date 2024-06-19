@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ChampionsController } from "../controllers/Champions.controller";
+import { ChampionsController } from "../controllers";
 
 export class ChampionsRoutes {
     public static get routes(): Router {

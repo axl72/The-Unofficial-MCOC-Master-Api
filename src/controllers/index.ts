@@ -1,3 +1,3 @@
-export * from './Champions.controller'
-export * from './Login.controller'
-export * from './Register.controller'
+export * from './champions.controller'
+export * from './login.controller'
+export * from './register.controller'
