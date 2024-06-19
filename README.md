@@ -15,7 +15,7 @@ This is the Unofficial Restful API for Marvel Consten of Champions made up to cr
 <p>
 	If you want to contribute to this project send me a message.
 	
-[![gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:axell.bernabel72@gmail.com?subject=thisbethesubject&body=thisisbody)
+[![gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:axell.bernabel72@gmail.com?subject=MCOC%20API%20Colaboration)
 </p>
 <br/>
 <h2 style="text-align: left;">💝 Support</h2>
