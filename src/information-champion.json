@@ -2,18 +2,18 @@
     "name": "Hercules",
     "biography": "Born in Ancient Greece, Hercules is a demigod born to Zeus - The king of Olympic Gods - and Alcmena, a woman of Thebes. As an infant. Hercules was cared for by his stepmother Hera. Queen of the Olumpian Gods, and bestowed with her blessings These blessings further elevated his demigod physiology to near Godlike heights, providing him with inmmense strength, stamina, immortality, and near invulnerability",
     "releaseDate": "2021-07-15",
-    "skills": [
+    "abilities": [
         {
             "title": "Always active",
-            "description": "This is a description"
+            "characteristics": ["This is a description", "this is another description"]
         }
     ],
-    "atribuites": {
+    "attributes": {
         "details": {
-            "HP": 65320,
+            "hp": 65320,
             "potency": 30285,
             "force": 6291,
-            "adrenalina": 0.3
+            "adrenaline": 0.3
         },
         "critical_raiting": 237,
         "critical_damage_raiting": 902,
@@ -32,22 +32,22 @@
     "resistences": [
         {
             "inmunity_asociated": "poison",
-            "description": "20%"
+            "ratio": 0.2
         },
         {
             "inmunity_asociated": "bleed",
-            "description": "50%"
+            "ratio": 0.5
         }
     ],
-    "tags": {
+    "tags":{
         "combatStyle": ["Offensive: Raw Damage"],
-        "attributes": ["Hero", "Size: L", "God", "EQ: Romance"],
+        "attributes": ["Hero", "Size: L", "God"],
         "organization": [],
         "allianceWars": [],
         "carinasChallenges": [],
         "allianceQuest": [],
         "releaseDate": "2021",
-        "saga": []
+        "saga": "null"
     },
     "signatureAbility": {
         "name": "Son of Zeus",
@@ -110,7 +110,7 @@
             "champions": [
                 {
                     "name": "Black Panther",
-                    "bonus": "Some bonus in this champion"
+                    "bonus": ["Some bonus for Black Panther", "Another bonus for Black Panther"]
                 }
             ],
             "bonuses": [
