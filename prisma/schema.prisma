@@ -25,7 +25,7 @@ model Champion {
   tags             Tag[]
   signatureAbility SignatureAbility?
   specialAttacks   SpecialAttack[]
-  // synergies        Synergy[]
+  synergies        Synergy[]
   sprites          Sprite[]
 }
 
@@ -37,16 +37,40 @@ model Sprite {
   champion   Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
 }
 
-// model Synergy {
-//   id        Int        @id @default(autoincrement())
-//   name      String     @unique
-//   champions Champion[]
-// }
+model Synergy {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  champions ChampionSynergy[]
+  championId Int
+  champion Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
+  bonuses  Bonus[]
+}
 
+model Bonus {
+  id Int @id @default(autoincrement())
+  description String
+  synergyId Int
+  synergy Synergy @relation(fields: [synergyId], references: [id], onDelete: Cascade)
+}
+
+model ChampionSynergy {
+  id Int @id @default(autoincrement())
+  name String
+  synergyId Int
+  synergies Synergy @relation(fields: [synergyId], references: [id], onDelete: Cascade)
+}
+
+model SpecialAttackBonus {
+  id Int @id @default(autoincrement())
+  description String
+  specialAttack SpecialAttack @relation(fields: [specialAttackId], references: [id], onDelete: Cascade)
+  specialAttackId Int
+}
 model SpecialAttack {
   id          Int      @id @default(autoincrement())
   name        String   @unique
   description String
+  bonuses SpecialAttackBonus[]
   championId  Int
   champion    Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
 }
@@ -58,10 +82,18 @@ model User {
   validated Boolean @default(false)
 }
 
+model SignatureBonus {
+  id Int @id @default(autoincrement())
+  description String
+  signatureAbilityId Int
+  signatureAbility SignatureAbility @relation(fields: [signatureAbilityId], references: [id], onDelete: Cascade)
+}
+
 model SignatureAbility {
   id          Int      @id @default(autoincrement())
   name        String
-  description String
+  type        String
+  bonuses     SignatureBonus[]
   championId  Int      @unique
   champion    Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
 }
@@ -76,7 +108,7 @@ model Tag {
 model Resistence {
   id Int @id @default(autoincrement())
   inmunity_asociated String
-  description String
+  ratio Int
   championId Int
   champion Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
 }
