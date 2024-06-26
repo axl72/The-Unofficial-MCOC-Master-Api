@@ -15,7 +15,7 @@ describe('Test Suit in ChampionController', () => {
         expect(test_champion).toHaveProperty('tags');
         expect(test_champion).toHaveProperty('signatureAbility')
         expect(test_champion).toHaveProperty('specialAttacks');
-        // expect(test_champion).toHaveProperty('synergies'); ToDo
+        expect(test_champion).toHaveProperty('synergies');
         expect(test_champion).toHaveProperty('sprites');
     });
 

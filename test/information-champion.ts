@@ -70,5 +70,24 @@ export const test_champion = {
                 url: "https://static.wikia.nocookie.net/marvel-contestofchampions/images/0/06/Hercules_portrait.png/revision/latest?cb=20210710214126"
             }
         ]
+    },
+
+    synergies: {
+        create: [
+            {
+                name: "Maserful combat",
+                champions: {
+                    create: [
+                        {name: "Black Panther"}
+                    ]
+                },
+                bonuses: {
+                    create: [
+                        {description: "some bonus"}
+                    ]
+                }
+            }
+
+        ]
     }
 }
