@@ -11,9 +11,20 @@
 This is the Unofficial Restful API for Marvel Consten of Champions made up to create the all greatest guide about Mcoc. In this api you can find information about champions, nodes, sprites, descriptions, advices, inmunities list and more. 
 </p>
 <br/>
+<h2 style="text-align: left;">Contribute</h2>
+<p>
+	If you want to contribute to this project send me a message.
+	
+[![gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:axell.bernabel72@gmail.com?subject=MCOC%20API%20Colaboration&body=Quiero%20colaborar%20porque...)
+</p>
+<br/>
 <h2 style="text-align: left;">💝 Support</h2>
 <p style="text-align: left;">
 If you like this MCOC API and would like to support & appreciate it via donation then I'll gladly accept it.
+	
 [![paypal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/axlbernabel)
 </p>
+
+
+
 </div>
