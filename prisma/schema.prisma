@@ -18,11 +18,11 @@ model Champion {
   name             String            @unique
   biography        String
   releaseDate      DateTime
-  skills           Skill[]
+  abilities        Abilitie[]
   attributes       Attribute?
   inmunities       Inmunity[]
   resistences      Resistence[]
-  tags             Tag[]
+  tags             Tags[]
   signatureAbility SignatureAbility?
   specialAttacks   SpecialAttack[]
   synergies        Synergy[]
@@ -38,41 +38,50 @@ model Sprite {
 }
 
 model Synergy {
-  id        Int        @id @default(autoincrement())
-  name      String     @unique
-  champions ChampionSynergy[]
+  id         Int               @id @default(autoincrement())
+  name       String            @unique
+  champions  ChampionSynergy[]
   championId Int
-  champion Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
-  bonuses  Bonus[]
+  champion   Champion          @relation(fields: [championId], references: [id], onDelete: Cascade)
+  bonuses    SynergyBonus[]
 }
 
-model Bonus {
-  id Int @id @default(autoincrement())
+model SynergyBonus {
+  id          Int     @id @default(autoincrement())
   description String
-  synergyId Int
-  synergy Synergy @relation(fields: [synergyId], references: [id], onDelete: Cascade)
+  synergyId   Int
+  synergy     Synergy @relation(fields: [synergyId], references: [id], onDelete: Cascade)
 }
 
 model ChampionSynergy {
-  id Int @id @default(autoincrement())
-  name String
+  id        Int     @id @default(autoincrement())
+  name      String
+  bonuses   ChampionSynergyBonus[]
   synergyId Int
   synergies Synergy @relation(fields: [synergyId], references: [id], onDelete: Cascade)
 }
 
-model SpecialAttackBonus {
+model ChampionSynergyBonus {
   id Int @id @default(autoincrement())
   description String
-  specialAttack SpecialAttack @relation(fields: [specialAttackId], references: [id], onDelete: Cascade)
+  championSynergyId Int
+  championSynergy ChampionSynergy @relation(fields: [championSynergyId], references: [id], onDelete: Cascade)
+}
+
+model SpecialAttackBonus {
+  id              Int           @id @default(autoincrement())
+  description     String
+  specialAttack   SpecialAttack @relation(fields: [specialAttackId], references: [id], onDelete: Cascade)
   specialAttackId Int
 }
+
 model SpecialAttack {
-  id          Int      @id @default(autoincrement())
-  name        String   @unique
+  id          Int                  @id @default(autoincrement())
+  name        String               @unique
   description String
-  bonuses SpecialAttackBonus[]
+  bonuses     SpecialAttackBonus[]
   championId  Int
-  champion    Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
+  champion    Champion             @relation(fields: [championId], references: [id], onDelete: Cascade)
 }
 
 model User {
@@ -83,71 +92,128 @@ model User {
 }
 
 model SignatureBonus {
-  id Int @id @default(autoincrement())
-  description String
+  id                 Int              @id @default(autoincrement())
+  description        String
   signatureAbilityId Int
-  signatureAbility SignatureAbility @relation(fields: [signatureAbilityId], references: [id], onDelete: Cascade)
+  signatureAbility   SignatureAbility @relation(fields: [signatureAbilityId], references: [id], onDelete: Cascade)
 }
 
 model SignatureAbility {
-  id          Int      @id @default(autoincrement())
-  name        String
-  type        String
-  bonuses     SignatureBonus[]
-  championId  Int      @unique
-  champion    Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
+  id         Int              @id @default(autoincrement())
+  name       String
+  type       String
+  bonuses    SignatureBonus[]
+  championId Int              @unique
+  champion   Champion         @relation(fields: [championId], references: [id], onDelete: Cascade)
 }
 
-model Tag {
-  id Int @id @default(autoincrement())
-  name String
-  championId Int 
-  champion Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
+model Tags {
+  id                Int                    @id @default(autoincrement())
+  championId        Int
+  champion          Champion               @relation(fields: [championId], references: [id], onDelete: Cascade)
+  combatStyle       CombatStyleTag[]
+  attributes        AttributeTag[]
+  organization      OrganizationTag[]
+  allianceWars      AllianceWarsTag[]
+  carinasChallenges CarinasChallengesTag[]
+  allianceQuest     AllianceQuestTag[]
+  releaseDate       String
+  saga              String
+}
+
+model CombatStyleTag {
+  id    Int  @id @default(autoincrement())
+  description String
+  tagId Int
+  tags  Tags @relation(fields: [tagId], references: [id], onDelete: Cascade)
+}
+
+model AttributeTag {
+  id    Int  @id @default(autoincrement())
+  description String
+  tagId Int
+  tags  Tags @relation(fields: [tagId], references: [id], onDelete: Cascade)
+}
+
+model OrganizationTag {
+  id    Int  @id @default(autoincrement())
+  description String
+  tagId Int
+  tags  Tags @relation(fields: [tagId], references: [id], onDelete: Cascade)
+}
+
+model AllianceWarsTag {
+  id    Int  @id @default(autoincrement())
+  description String
+  tagId Int
+  tags  Tags @relation(fields: [tagId], references: [id], onDelete: Cascade)
+}
+
+model CarinasChallengesTag {
+  id    Int  @id @default(autoincrement())
+  description String
+  tagId Int
+  tags  Tags @relation(fields: [tagId], references: [id], onDelete: Cascade)
+}
+
+model AllianceQuestTag {
+  id    Int  @id @default(autoincrement())
+  description String
+  tagId Int
+  tags  Tags @relation(fields: [tagId], references: [id], onDelete: Cascade)
 }
 
 model Resistence {
-  id Int @id @default(autoincrement())
+  id                 Int      @id @default(autoincrement())
   inmunity_asociated String
-  ratio Int
-  championId Int
-  champion Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
+  ratio              Float
+  championId         Int
+  champion           Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
 }
 
 model Inmunity {
-  id Int @id @default(autoincrement())
-  name String
+  id         Int      @id @default(autoincrement())
+  name       String
   championId Int
-  champion Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
+  champion   Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
 }
 
-model Skill {
+model Abilitie {
+  id          Int      @id @default(autoincrement())
+  title       String
+  characteristics Characteristic[]
+  championId  Int
+  champion    Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
+}
+
+model Characteristic {
   id Int @id @default(autoincrement())
-  title String
   description String
-  championId Int
-  champion Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
+  abilitieId Int
+  abilitie Abilitie @relation(fields: [abilitieId], references: [id], onDelete: Cascade)
 }
 
 model DetailsAttribute {
-  id Int @id @default(autoincrement())
-  hp String
-  potency Int
-  force Int
-  adrenaline Float
-  attributeId Int @unique
-  attribute Attribute  @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  id          Int       @id @default(autoincrement())
+  hp          Int
+  potency     Int
+  force       Int
+  adrenaline  Float
+  attributeId Int       @unique
+  attribute   Attribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
 }
+
 model Attribute {
-  id Int @id @default(autoincrement())
-  details DetailsAttribute?
-  critical_raiting Float
+  id                      Int               @id @default(autoincrement())
+  details                 DetailsAttribute?
+  critical_raiting        Float
   critical_damage_raiting Float
-  armor_penetration Float
-  block_penetration Float
-  critical_resistence Float
-  armor_raiting Float
-  block_proficiency Float
-  energy_resistence Float
-  championId Int @unique
-  champion Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
+  armor_penetration       Float
+  block_penetration       Float
+  critical_resistence     Float
+  armor_raiting           Float
+  block_proficiency       Float
+  energy_resistence       Float
+  championId              Int               @unique
+  champion                Champion          @relation(fields: [championId], references: [id], onDelete: Cascade)
 }
