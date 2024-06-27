@@ -22,7 +22,7 @@ model Champion {
   attributes       Attribute?
   inmunities       Inmunity[]
   resistences      Resistence[]
-  tags             Tags[]
+  tags             Tags?
   signatureAbility SignatureAbility?
   specialAttacks   SpecialAttack[]
   synergies        Synergy[]
@@ -54,18 +54,18 @@ model SynergyBonus {
 }
 
 model ChampionSynergy {
-  id        Int     @id @default(autoincrement())
+  id        Int                    @id @default(autoincrement())
   name      String
   bonuses   ChampionSynergyBonus[]
   synergyId Int
-  synergies Synergy @relation(fields: [synergyId], references: [id], onDelete: Cascade)
+  synergies Synergy                @relation(fields: [synergyId], references: [id], onDelete: Cascade)
 }
 
 model ChampionSynergyBonus {
-  id Int @id @default(autoincrement())
-  description String
+  id                Int             @id @default(autoincrement())
+  description       String
   championSynergyId Int
-  championSynergy ChampionSynergy @relation(fields: [championSynergyId], references: [id], onDelete: Cascade)
+  championSynergy   ChampionSynergy @relation(fields: [championSynergyId], references: [id], onDelete: Cascade)
 }
 
 model SpecialAttackBonus {
@@ -109,8 +109,7 @@ model SignatureAbility {
 
 model Tags {
   id                Int                    @id @default(autoincrement())
-  championId        Int
-  champion          Champion               @relation(fields: [championId], references: [id], onDelete: Cascade)
+  championId        Int                    @unique
   combatStyle       CombatStyleTag[]
   attributes        AttributeTag[]
   organization      OrganizationTag[]
@@ -119,48 +118,49 @@ model Tags {
   allianceQuest     AllianceQuestTag[]
   releaseDate       String
   saga              String
+  champion          Champion               @relation(fields: [championId], references: [id], onDelete: Cascade)
 }
 
 model CombatStyleTag {
-  id    Int  @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   description String
-  tagId Int
-  tags  Tags @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  tagId       Int
+  tags        Tags   @relation(fields: [tagId], references: [id], onDelete: Cascade)
 }
 
 model AttributeTag {
-  id    Int  @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   description String
-  tagId Int
-  tags  Tags @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  tagId       Int
+  tags        Tags   @relation(fields: [tagId], references: [id], onDelete: Cascade)
 }
 
 model OrganizationTag {
-  id    Int  @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   description String
-  tagId Int
-  tags  Tags @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  tagId       Int
+  tags        Tags   @relation(fields: [tagId], references: [id], onDelete: Cascade)
 }
 
 model AllianceWarsTag {
-  id    Int  @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   description String
-  tagId Int
-  tags  Tags @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  tagId       Int
+  tags        Tags   @relation(fields: [tagId], references: [id], onDelete: Cascade)
 }
 
 model CarinasChallengesTag {
-  id    Int  @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   description String
-  tagId Int
-  tags  Tags @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  tagId       Int
+  tags        Tags   @relation(fields: [tagId], references: [id], onDelete: Cascade)
 }
 
 model AllianceQuestTag {
-  id    Int  @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   description String
-  tagId Int
-  tags  Tags @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  tagId       Int
+  tags        Tags   @relation(fields: [tagId], references: [id], onDelete: Cascade)
 }
 
 model Resistence {
@@ -179,18 +179,18 @@ model Inmunity {
 }
 
 model Abilitie {
-  id          Int      @id @default(autoincrement())
-  title       String
+  id              Int              @id @default(autoincrement())
+  title           String
   characteristics Characteristic[]
-  championId  Int
-  champion    Champion @relation(fields: [championId], references: [id], onDelete: Cascade)
+  championId      Int
+  champion        Champion         @relation(fields: [championId], references: [id], onDelete: Cascade)
 }
 
 model Characteristic {
-  id Int @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   description String
-  abilitieId Int
-  abilitie Abilitie @relation(fields: [abilitieId], references: [id], onDelete: Cascade)
+  abilitieId  Int
+  abilitie    Abilitie @relation(fields: [abilitieId], references: [id], onDelete: Cascade)
 }
 
 model DetailsAttribute {
