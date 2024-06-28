@@ -7,5 +7,6 @@ export const envs = {
     MAILER_SERVICE: env.get('MAILER_SERVICE').asString(),
     MAILER_EMAIL: env.get('MAILER_EMAIL').asString(),
     MAILER_KEY: env.get('MAILER_KEY').asString(),
-    WEBSERVICE_URL: env.get('WEBSERVICE_URL')
+    WEBSERVICE_URL: env.get('WEBSERVICE_URL'),
+    TOKEN_SECRET_KEY: env.get('TOKEN_SECRET_KEY').asString()
 }
