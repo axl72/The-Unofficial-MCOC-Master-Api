@@ -89,6 +89,7 @@ model User {
   email     String
   password  String
   validated Boolean @default(false)
+  role      String
 }
 
 model SignatureBonus {
