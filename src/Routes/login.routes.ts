@@ -7,7 +7,7 @@ export class LoginRoutes {
         
         const controller = new LoginController();
 
-        router.get('/', controller.sendToken);
+        router.post('/', controller.sendToken);
 
         return router;
 
