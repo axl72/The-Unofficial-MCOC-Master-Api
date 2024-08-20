@@ -19,7 +19,7 @@ export class ChampionsController {
 
   public createChampion = async (req: Request, res: Response) => {
     try {
-      Champion.create(req.body);
+      await Champion.create(req.body);
       res.json({ message: "Champion created successful" });
     } catch (error) {
       console.log(error);
@@ -28,7 +28,18 @@ export class ChampionsController {
   };
 
   public updateChampion = async (req: Request, res: Response) => {
-    throw new Error("Method updateChampion is not implemented");
+    const championName = req.params.championName;
+
+    try {
+      const champion = await Champion.findChampionByName(championName)
+      if(!champion) return res.json({message: "Champion not found"})
+
+      await Champion.updateChampionByName(championName, req.body)
+      res.json({message: "Champion updated sucdessfully"})
+    }catch(error){
+      console.log(error)
+      res.json({meesage: "Something was wrong"})
+    }
   };
 
   public deleteChammpionByName = async (req: Request, res: Response) => {
