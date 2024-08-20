@@ -110,7 +110,7 @@
             "champions": [
                 {
                     "name": "Black Panther",
-                    "bonus": ["Some bonus for Black Panther", "Another bonus for Black Panther"]
+                    "bonuses": ["Some bonus for Black Panther", "Another bonus for Black Panther"]
                 }
             ],
             "bonuses": [
