@@ -18,7 +18,7 @@ export class RegisterController {
         await prisma.user.create({data: {
             email: email,
             password: password,
-            role: ''
+            // role: ''
         }})
 
         const {isSent, error} = await this.sendEmailValidation(email);
