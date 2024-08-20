@@ -10,7 +10,7 @@ export class ChampionsRoutes {
 
         router.get('/:championName', championsController.getChampionsByName);
         router.post('/create',[AuthMiddleware.validateJWT], championsController.createChampion);
-        router.put('/update', championsController.updateChampion)
+        router.put('/update/:championName', championsController.updateChampion)
         router.delete('/delete', [AuthMiddleware.validateJWT], championsController.deleteChammpionByName)
 
         return router;
