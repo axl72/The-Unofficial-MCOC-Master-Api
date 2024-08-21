@@ -24,7 +24,7 @@ export class ChampionDTO {
     return this.dataChampion;
   }
 
-  static createChampionFromObject = (object: {[key: string]: any}) => {
+  static createChampionFromObject = (object: { [key: string]: any }) => {
     const {
       name,
       biography,
@@ -146,14 +146,23 @@ export class ChampionDTO {
           })),
         },
       },
-    }
-    return champion
-  }
+    };
+    return champion;
+  };
 
-  static createChampionFromObjectoToUpdate = (object: {[key: string]: any}) => {
-    
-  }
+  static createChampionFromObjectoToUpdate = (object: {
+    [key: string]: any;
+  }) => {};
 
+  static createFromObjectRequestNotNull = (object: { [key: string]: any }) => {
+
+    const filteredValues = Object.fromEntries(
+      Object.entries(object).filter(([key, value]) => value !== null)
+    );
+    console.log(filteredValues)
+
+    return filteredValues;
+  };
 
   static createFromObjectRequest = (object: { [key: string]: any }) => {
     const {
@@ -183,12 +192,12 @@ export class ChampionDTO {
       signatureAbility,
       specialAttacks,
       synergies,
-      sprites
-    })
+      sprites,
+    });
   };
 
-  static createFromObjectDatabase = (object: {[key: string]: any}) => {
-     const {
+  static createFromObjectDatabase = (object: { [key: string]: any }) => {
+    const {
       name,
       biography,
       abilities,
@@ -213,7 +222,7 @@ export class ChampionDTO {
         ...attributesResult,
         details: { ...moreDetails },
       },
-      inmunities: inmunities?.map((inmunity:any) => inmunity),
+      inmunities: inmunities?.map((inmunity: any) => inmunity),
       resistences: resistences?.map(({ inmunity_asociated, ratio }: any) => ({
         inmunity_asociated,
         ratio,
@@ -222,46 +231,56 @@ export class ChampionDTO {
         name: signatureAbility?.name,
         type: signatureAbility?.type,
         bonuses: signatureAbility?.bonuses.map(
-          ({ description}:any) => description
+          ({ description }: any) => description
         ),
       },
-      specialAttacks: specialAttacks?.map(({ name, description, bonuses }:any) => ({
+      specialAttacks: specialAttacks?.map(
+        ({ name, description, bonuses }: any) => ({
+          name,
+          description,
+          bonuses: bonuses.map(({ description }: any) => description),
+        })
+      ),
+      synergies: synergies?.map(({ name, champions, bonuses }: any) => ({
         name,
-        description,
-        bonuses: bonuses.map(({ description }:any) => description),
-      })),
-      synergies: synergies?.map(({ name, champions, bonuses }:any) => ({
-        name,
-        bonuses: bonuses.map(({ description }:any) => description),
-        champions: champions.map(({ name }:any) => ({
+        bonuses: bonuses.map(({ description }: any) => description),
+        champions: champions.map(({ name }: any) => ({
           name,
         })),
       })),
       tags: {
         releaseDate: tags?.releaseDate,
         allianceQuest: tags?.allianceQuest.map(
-          ({ description }:any) => description
+          ({ description }: any) => description
         ),
-        allianceWars: tags?.allianceWars.map(({ description }:any) => description),
-        attributes: tags?.attributes.map(({ description }:any) => description),
+        allianceWars: tags?.allianceWars.map(
+          ({ description }: any) => description
+        ),
+        attributes: tags?.attributes.map(({ description }: any) => description),
         carinasChallenges: tags?.carinasChallenges.map(
-          ({ description }:any) => description
+          ({ description }: any) => description
         ),
-        combatStyle: tags?.combatStyle.map(({ description }:any) => description),
-        organization: tags?.organization.map(({ description }:any) => description),
+        combatStyle: tags?.combatStyle.map(
+          ({ description }: any) => description
+        ),
+        organization: tags?.organization.map(
+          ({ description }: any) => description
+        ),
         saga: tags?.saga,
       },
 
-      sprites: sprites?.map(({ source, url }:any) => ({
+      sprites: sprites?.map(({ source, url }: any) => ({
         source,
         url,
       })),
-      abilities: abilities?.map(({ title, characteristics }:any) => ({
+      abilities: abilities?.map(({ title, characteristics }: any) => ({
         title,
-        characteristics: characteristics.map(({ description }:any) => description),
+        characteristics: characteristics.map(
+          ({ description }: any) => description
+        ),
       })),
     };
 
     return new ChampionDTO(championResult);
-  }
+  };
 }
