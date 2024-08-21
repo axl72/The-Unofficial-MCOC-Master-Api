@@ -15,14 +15,14 @@ export class Champion {
   };
 
   public static updateChampionByName = async (championName: string, objectj: {[key: string]: any}) => {
-    const champion = ChampionDTO.createFromObjectRequest(objectj)
-    console.log(champion)
+    const championData = await ChampionDTO.createFromObjectRequestNotNull(objectj)
+    console.log(championData)
     await prisma.champion.update({
       where: {
         name: championName
       },
       data: {
-        biography: "Nació en Perú"
+        ...championData
       }
     })
   }
